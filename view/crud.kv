@@ -1,0 +1,308 @@
+<GerenciaTelas>:
+    TelaInicial:
+    CadastroClient:
+    ListarClients:
+
+<TelaInicial>:
+    name: 'TelaInicial'
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        canvas:
+            Rectangle:
+                source: 'logo.jpg'
+                pos: root.pos
+                size: self.size
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: 200
+            size_hint_x: .5
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, .10
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Clients Health"
+                font_size: "20sp"
+                color: [0,0,0,1]
+            Button:
+                on_release: app.root._telaClient.montarTelaAt(self)
+                text: 'Cadastrar'
+            Button:
+                on_release: app.root.telaListarClients()
+                text: 'Listar Clients'
+
+
+
+<CadastroClient>:
+    name: "CadastroClient"
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        canvas:
+            Color:
+                rgba: .30, .25, .1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: [0.9, .9]
+            canvas:
+                Color:
+                    rgba: .30, .25, .1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                text: 'ID:'
+                size_hint: [1,.25]
+
+            Label:
+                id: lblIdClient
+                color:[0,0,0,.8]
+                size_hint: [1, .25]
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, .6
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+            Label:
+                text: "TreatmentStatus:"
+                size_hint: [1, .25]
+            TextInput:
+                id: txtTreatmentStatus
+                hint_text: 'Treatment Status'
+                size_hint: [1, .25]
+                multiline: False
+
+            Label:
+                text: "Gender:"
+                size_hint: [1, .25]
+            TextInput:
+                id: txtGender
+                hint_text: 'Male'
+                size_hint: [1, .25]
+                multiline: False
+
+            Label:
+                text: "Age:"
+                size_hint: [1, .25]
+            TextInput:
+                id: txtAge
+                hint_text: '34'
+                size_hint: [1, .25]
+                multiline: False
+
+            Label:
+                text: "Race:"
+                size_hint: [1, .25]
+            TextInput:
+                id: txtRace
+                hint_text: 'Race'
+                size_hint: [1, .25]
+                multiline: False
+
+            Label:
+                text: "EmploymentStatus:"
+                size_hint: [1, .25]
+            TextInput:
+                id: txtEmploymentStatus
+                hint_text: 'Employment status'
+                size_hint: [1, .25]
+                multiline: False
+
+            Label:
+                text: "MentalHealthDiagnosis:"
+                size_hint: [1, .25]
+            TextInput:
+                id: txtMentalHealthDiagnosis
+                hint_text: 'Mental Health Diagnosis'
+                size_hint: [1, .25]
+                multiline: False
+
+            Label:
+                text: "SubstanceUseDiagnosis:"
+                size_hint: [1, .25]
+            TextInput:
+                id: txtSubstanceUseDiagnosis
+                hint_text: 'Substance Use Diagnosis'
+                size_hint: [1, .25]
+                multiline: False
+
+            GridLayout:
+                cols: 2
+                size_hint: [1, 0.25]
+                orientation: 'lr-tb'
+                padding : [0,20,0,0]
+
+                Button:
+                    id: btCadAtualClient
+                    on_release: app.root.cadastrarAtualizarClient()
+                    text: 'Cadastrar'
+                    size_hint: [1, 0.25]
+
+                Button:
+                    on_release: app.root.telaInicial()
+                    text: 'Tela Inicial'
+                    size_hint: [1, 0.25]
+
+
+<listarClients>:
+    name: "ListarClients"
+
+    BoxLayout:
+        id: pesquisas
+        orientation: 'vertical'
+        canvas:
+            Color:
+                rgba: .30, .25, .1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            text: 'Pesquisar Clients:'
+            font_size: '18sp'
+            size_hint_y: None
+            height: '50dp'
+
+        GridLayout:
+            canvas.before:
+                Color:
+                    rgba: .80, .69, .58, .6
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            cols: 4
+            Label:
+                text: "Pesquisar por Id"
+                color: [0,0,0,.8]
+
+        GridLayout:
+            id: pesqId
+            cols: 3
+            size_hint_y: None
+            height: '30dp'
+            size_hint_x: .7
+            Label:
+                text:'Id'
+            TextInput:
+                id: inputIdClient
+                hint_text: 'Id para pesquisa'
+                size_hint: [1, 1]
+                multiline: False
+            Button:
+                on_release: app.root.buscarClients()
+                text: 'Pesquisar...'
+                size_hint: [1, 1]
+
+
+        GridLayout:
+            id: listaClients
+            cols: 10
+            size_hint_y: None
+            height: '400dp'
+            canvas:
+                Color:
+                    rgba: .80, .69, .58, .6
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                id: colIdClient
+                text: 'Id'
+                size_hint_y: None
+                height: '30dp'
+                size_hint_x: .1
+                color: [0,0,0,1]
+
+            Label:
+                id: colTreatmentStatus
+                text: 'Treatment'
+                size_hint_y: None
+                height: '30dp'
+                size_hint_x: .1
+                color: [0,0,0,1]
+
+            Label:
+                id: colGender
+                text: 'Gender'
+                size_hint_y: None
+                height: '30dp'
+                size_hint_x: .1
+                color: [0,0,0,1]
+
+            Label:
+                id: colAge
+                text: 'Age'
+                size_hint_y: None
+                height: '30dp'
+                size_hint_x: .1
+                color: [0,0,0,1]
+
+
+            Label:
+                id: colRace
+                text: 'Race'
+                size_hint_y: None
+                height: '30dp'
+                size_hint_x: .1
+                color: [0,0,0,1]
+
+            Label:
+                id: colEmploymentStatus
+                text: 'Employment'
+                size_hint_y: None
+                height: '30dp'
+                size_hint_x: .1
+                color: [0,0,0,1]
+
+            Label:
+                id: colMentalHealthDiagnosis
+                text: 'Mental H.'
+                size_hint_y: None
+                height: '30dp'
+                size_hint_x: .1
+                color: [0,0,0,1]
+
+            Label:
+                id: colSubstanceUseDiagnosis
+                text: 'Substance U.'
+                size_hint_y: None
+                height: '30dp'
+                size_hint_x: .1
+                color: [0,0,0,1]
+
+            Label:
+                id: lblAtual
+                text: 'Atualizar'
+                size_hint_y: None
+                height: '30dp'
+                size_hint_x: .1
+                color: [0,0,0,1]
+
+            Label:
+                id: lblExcluir
+                text: 'Excluir'
+                size_hint_y: None
+                height: '30dp'
+                size_hint_x: .1
+                color: [0,0,0,1]
+
+
+        AnchorLayout:
+            id: interno
+            anchor_x: 'center'
+            anchor_y: 'center'
+
+            Button:
+                on_release: app.root.telaInicial()
+                text: 'Tela Inicial'
+                size_hint_y: .5
+                size_hint_x: .3
+
